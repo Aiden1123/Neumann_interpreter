@@ -1,0 +1,47 @@
+.UNIT, test_zmiany_czytnika
+.DATA
+tab1: .WORD,1,2,3,4
+n1: .WORD,3
+tab2: .WORD,5,6,7
+n2: .WORD,2
+it: .WORD,tab1
+i: .WORD,0
+.CODE
+start: load,@A,(n1)
+sub,@A,(i)
+jneg,exit
+load,@A,((it))
+add,@A,-1
+store,@A,(it)
+load,@A,(it)
+add,@A,1
+store,@A,it
+load,@A,(i)
+add,@A,1
+store,@A,i
+jump, start
+exit:
+
+start1:
+load,@B,tab2
+store,@B,it 
+load,@B,0
+store,@B,i
+start2:
+load,@A,(n2)
+sub,@A,(i)
+jneg,exit1
+load,@A,((it))
+add,@A,-1
+store,@A,(it)
+load,@A,(it)
+add,@A,1
+store,@A,it
+load,@A,(i)
+add,@A,1
+store,@A,i
+jump, start2
+exit1:
+
+halt,
+.END
